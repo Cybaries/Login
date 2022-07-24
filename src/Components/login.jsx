@@ -1,5 +1,6 @@
 import React from 'react';
 import './style/login.scss';
+import users from './users.json';
 
 class RememberMe extends React.Component {
   static displayName = "RememberMe";
@@ -34,10 +35,27 @@ class RememberMe extends React.Component {
 
   loginSubmit = () => {
     const { email, password, isChecked } = this.state;
-    if (isChecked && email !== "") {
-      localStorage.username = email;
-      localStorage.password = password;
-      localStorage.checkbox = isChecked;
+    if (users.users.find(user => user.email === email && user.password === password)) {
+      localStorage.setItem("username", email);
+      localStorage.setItem("password", password);
+      localStorage.setItem("checkbox", isChecked);
+      window.location.href = "/";
+    }
+    else if (users.users.find(user => user.email === email && user.password !== password)) {
+      const msg = document.querySelector('.msg');
+      const email = document.querySelector('#email');
+      const password = document.querySelector('#password');
+      email.style.border = '1px solid red';
+      password.style.border = '1px solid red';
+      msg.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i>Email and password do not match';
+      msg.style.visibility = "visible";
+    }
+    else{
+      const msg = document.querySelector('.msg');
+      const email = document.querySelector('#email');
+      email.style.border = '1px solid red';
+      msg.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i>Please enter a valid email';
+      msg.style.visibility = "visible";
     }
   };
 
@@ -51,8 +69,9 @@ class RememberMe extends React.Component {
             <div className="name-email">We need your Name & Email</div>
           </div>
           <div className="form">
-            <input type="email" placeholder='Email' name='email' value={email} onChange={this.onChangeValue} />
-            <input type="password" placeholder='Password' name='password' value={password} onChange={ this.onChangeValue } />
+            <input id='email' type="email" placeholder='Email' name='email' value={email} onChange={this.onChangeValue} />
+            <input id='password' type="password" placeholder='Password' name='password' value={password} onChange={this.onChangeValue} />
+            <div className="msg"></div>
             <button type="submit" value="Login" onClick={this.loginSubmit}>Log In</button>
             <div className="remember-me">
               <input type="checkbox" checked={isChecked}

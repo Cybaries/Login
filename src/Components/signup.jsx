@@ -1,6 +1,7 @@
 import './style/signup.scss';
 
 function signup() {
+    
     return (
         <>
             <div className="login">
@@ -8,7 +9,7 @@ function signup() {
                     <input type="text" placeholder='Name' name='name' />
                     <input type="email" placeholder='Email' name='email' />
                     <input type="password" placeholder='Password' name='password'/>
-                    <button type="submit" value="Signup">Log In</button>
+                    <button type="submit" value="Signup" >Sign up</button>
                 </div>
             </div>
         </>
