@@ -1,0 +1,44 @@
+@mixin font{
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3rem;
+}
+.info{
+    @include font;
+    margin-left: 7rem;
+    .continue{
+      font-size: 1.2rem;
+    }
+    .name-email{
+      font-weight: 300;
+      font-size: 0.9rem;
+    }
+  }
+  .form{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin:2.5rem 7rem 1.5rem 7rem;
+    justify-content: space-between;
+    input,button{
+      padding: 0.8rem;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      border:1px 
+      rgba(203, 219, 234, 1) solid;
+    }
+    button{
+      background-color:#329C89;
+      color: white;
+      @include font;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    span{
+      @include font;
+      font-size: 0.8rem;
+      font-weight: 300;
+      margin-left: 1.5rem;
+      color:rgba(26, 59, 88, 0.61);
+      ;
+    }
+  }
