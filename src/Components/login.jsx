@@ -1,6 +1,7 @@
 import React from 'react';
 import './style/login.scss';
 import users from './users.json';
+// import Home from './Home';
 
 class RememberMe extends React.Component {
   static displayName = "RememberMe";
@@ -39,7 +40,8 @@ class RememberMe extends React.Component {
       localStorage.setItem("username", email);
       localStorage.setItem("password", password);
       localStorage.setItem("checkbox", isChecked);
-      window.location.href = "/";
+      // const root = document.getElementById("root");
+      // root.render(<Home />);
     }
     else if (users.users.find(user => user.email === email && user.password !== password)) {
       const msg = document.querySelector('.msg');
